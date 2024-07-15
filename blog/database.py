@@ -12,3 +12,11 @@ Base = declarative_base()
 
 # we will use this for creating local session when we need to interact with the database
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+
+# creating a function to get the database session
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
