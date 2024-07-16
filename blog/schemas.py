@@ -1,5 +1,6 @@
 from pydantic import BaseModel
-from typing import List
+from typing import List, Dict
+from typing import Optional
 
 class BlogBase(BaseModel):
     title: str
@@ -33,3 +34,16 @@ class ShowBlog(BaseModel):
 class Login(BaseModel):
     username: str
     password: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+
+class TokenData(BaseModel):
+    email: Optional[str] =  None
+
+class HTTPExceptionModel(BaseModel):
+    status_code: int
+    detail: str
+    headers: Optional[Dict[str, str]] = None
